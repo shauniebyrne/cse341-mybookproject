@@ -1,0 +1,16 @@
+{ "version": "0.2.0", 
+  "configurations": [ 
+    { "type": "node", 
+    "request": "launch", 
+    "name": "Nodemon", 
+    "skipFiles": ["<node_internals>/**"],
+    "program": "${workspaceFolder}/server.js", 
+    "runtimeExecutable": "${workspaceFolder}/node_modules/nodemon/bin/nodemon.js", 
+    "restart": true, 
+    // "cwd": "${workspaceRoot}", 
+    // "runtimeArgs": ["--inspect=8080"], 
+    // "port": 8080, 
+    "console": "integratedTerminal", 
+    "internalConsoleOptions": "neverOpen" } 
+    ]
+}
