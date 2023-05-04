@@ -1,4 +1,18 @@
 //LOCALHOST
+//USERS
+### Get a users information
+GET http://localhost:8080/user/64543e3f4141c42616338624 HTTP/1.1
+
+### Creat a new user
+POST http://localhost:8080/user HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "shauntalbyrne27@gmail.com",
+    "password": "asakjdfodi"
+}
+
+
 //AUTHORS
 ### Get list of authors
 GET http://localhost:8080/authors HTTP/1.1
@@ -10,6 +24,7 @@ Content-Type: application/json
 {
     "name": "Laura Beers"
 }
+
 
 //READ (BOOK INFO)
 ### Get list of books
@@ -32,7 +47,23 @@ Content-Type: application/json
     "readAgain": "no, too many swears"
 }
 
+
+
 //RENDER
+//USERS
+### Get a users information
+GET https://cse342-mybookproject.onrender.com/user/64543e3f4141c42616338624 HTTP/1.1
+
+### Creat a new user
+POST https://cse342-mybookproject.onrender.com/user HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "shauntalbyrne27@gmail.com",
+    "password": "asakjdfodi"
+}
+
+
 //AUTHORS
 ### Get list of authors
 GET https://cse342-mybookproject.onrender.com/authors HTTP/1.1
