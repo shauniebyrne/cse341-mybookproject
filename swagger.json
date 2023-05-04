@@ -20,7 +20,11 @@
     },
     "/authors/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Authors"
+        ],
+        "summary": "Shows list of all authors",
+        "description": "See a list of all authors in database",
         "produces": [
           "application/json"
         ],
@@ -32,7 +36,11 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Authors"
+        ],
+        "summary": "Adds a new author to the list",
+        "description": "Enter the authors first and last name",
         "parameters": [
           {
             "name": "body",
@@ -59,7 +67,11 @@
     },
     "/read/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Books Read"
+        ],
+        "summary": "Shows all books",
+        "description": "See a list of all books in database",
         "produces": [
           "application/json"
         ],
@@ -71,7 +83,11 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Books Read"
+        ],
+        "summary": "Add a book you read",
+        "description": "Add a new books information you read",
         "parameters": [
           {
             "name": "body",
@@ -116,7 +132,11 @@
     },
     "/read/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Books Read"
+        ],
+        "summary": "Shows a selected books information",
+        "description": "See a books information from the database",
         "produces": [
           "application/json"
         ],

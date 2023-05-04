@@ -1,8 +1,11 @@
 const mongodb = require('../db/connect');
-const ObjectId = require('mongodb').ObjectId;
+//const ObjectId = require('mongodb').ObjectId;
 
 //Read (GET) list of authors
-const getAuthorsList = async (req, res, next) => {
+const getAuthorsList = async (req, res) => {
+    //#swagger.tags=['Authors']
+    //#swagger.summary=Shows list of all authors
+    //#swagger.description=See a list of all authors in database 
     //Connect to books database in mongodb
     const dataBack = await mongodb
         .getDb()
@@ -16,7 +19,10 @@ const getAuthorsList = async (req, res, next) => {
 }
 
 //Create (POST) a new author
-const createAuthor = async (req, res, next) => {
+const createAuthor = async (req, res) => {
+    //#swagger.tags=['Authors']
+    //#swagger.summary=Adds a new author to the list
+    //#swagger.description=Enter the authors first and last name 
     const newAuthor = {
         name: req.body.name
     };

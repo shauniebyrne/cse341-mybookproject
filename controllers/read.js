@@ -2,7 +2,10 @@ const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
 //Read (GET) all books in database
-const getAllBooks = async (req, res, next) => {
+const getAllBooks = async (req, res) => {
+    //#swagger.tags=['Books Read']
+    //#swagger.summary=Shows all books
+    //#swagger.description=See a list of all books in database 
     //Connect to books database
     const dataBack = await mongodb
         .getDb()
@@ -17,7 +20,10 @@ const getAllBooks = async (req, res, next) => {
 };
 
 //Read (GET) one book's info in database
-const getOneBook = async (req, res, next) => {
+const getOneBook = async (req, res) => {
+    //#swagger.tags=['Books Read']
+    //#swagger.summary=Shows a selected books information
+    //#swagger.description=See a books information from the database 
     //Create new object based off id
     const BookId = new ObjectId(req.params.id);
 
@@ -35,7 +41,10 @@ const getOneBook = async (req, res, next) => {
 };
 
 //Create (POST) new book info
-const createBook = async (req, res, next) => {
+const createBook = async (req, res) => {
+    //#swagger.tags=['Books Read']
+    //#swagger.summary=Add a book you read
+    //#swagger.description=Add a new books information you read
     //New Book info
     const newBook = {
         title: req.body.title,
