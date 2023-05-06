@@ -8,9 +8,21 @@ POST http://localhost:8080/user HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "shauntalbyrne27@gmail.com",
-    "password": "asakjdfodi"
+    "email": "hothorse7@hotmail.com",
+    "password": "awesome"
 }
+
+### Update a user's info
+PUT http://localhost:8080/user/645695e86046294adf539f99 HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "hothorse7@hotmail.com",
+    "password": "coolBeans"
+}
+
+### Delete a user's info
+DELETE http://localhost:8080/user/6456a8e54c8a4560eeeadd0f HTTP/1.1
 
 
 //AUTHORS
@@ -22,8 +34,19 @@ POST http://localhost:8080/authors HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Laura Beers"
+    "name": "Shauntal Byrne"
 }
+
+### Update authors name
+PUT http://localhost:8080/authors/645696a66046294adf539f9a HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Shaunie Byrne"
+}
+
+### Delete author
+DELETE http://localhost:8080/authors/645696a66046294adf539f9a HTTP/1.1
 
 
 //READ (BOOK INFO)
@@ -38,14 +61,31 @@ POST http://localhost:8080/read HTTP/1.1
 Content-Type: application/json
 
 {
-    "title": "Evermore Academy: Summer",
-    "author": "Audrey Grey",
-    "genre": "YA - Fantasy, Fairies and Magic",
-    "published": "2021",
-    "series": "yes",
-    "numberInSeries": "Book 3 of 3",
-    "readAgain": "no, too many swears"
+    "title": "anything",
+    "author": "no one",
+    "genre": "something",
+    "published": "2023",
+    "series": "no",
+    "numberInSeries": "n/a",
+    "readAgain": "no"
 }
+
+### Update book info
+PUT http://localhost:8080/read/645697616046294adf539f9b HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Everything",
+    "author": "no one",
+    "genre": "something",
+    "published": "2023",
+    "series": "no",
+    "numberInSeries": "not a series",
+    "readAgain": "no"
+}
+
+### Delete book
+DELETE http://localhost:8080/read/645697616046294adf539f9b HTTP/1.1
 
 
 
@@ -54,14 +94,26 @@ Content-Type: application/json
 ### Get a users information
 GET https://cse342-mybookproject.onrender.com/user/64543e3f4141c42616338624 HTTP/1.1
 
-### Creat a new user
+### Create a new user
 POST https://cse342-mybookproject.onrender.com/user HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "shauntalbyrne27@gmail.com",
-    "password": "asakjdfodi"
+    "email": "jared.byrne@hotmail.com",
+    "password": "jfdkaosdkijf"
 }
+
+### Update a user's info
+PUT https://cse342-mybookproject.onrender.com/user/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "jaredbyrne@gmail.com",
+    "password": "r0cken"
+}
+
+### Delete a user's info
+DELETE https://cse342-mybookproject.onrender.com/user/ HTTP/1.1
 
 
 //AUTHORS
@@ -73,8 +125,19 @@ POST https://cse342-mybookproject.onrender.com/authors HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Audrey Grey"
+    "name": "Shauntal Byrne"
 }
+
+### Update authors name
+PUT https://cse342-mybookproject.onrender.com/authors/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Shaunie Byrne"
+}
+
+### Delete author
+DELETE https://cse342-mybookproject.onrender.com/authors/ HTTP/1.1
 
 //READ (BOOK INFO)
 ### Get list of books
@@ -88,12 +151,29 @@ POST https://cse342-mybookproject.onrender.com/read HTTP/1.1
 Content-Type: application/json
 
 {
-    "title": "Twilight",
-    "author": "Stephenie Meyer",
-    "genre": "YA - Fantasy, Vampires and Werewolves",
-    "published": "2005",
-    "series": "yes",
-    "numberInSeries": "Book 1 of 4",
-    "readAgain": "yes"
+    "title": "something",
+    "author": "no one",
+    "genre": "cant say",
+    "published": "2023",
+    "series": "no",
+    "numberInSeries": "n/a",
+    "readAgain": "no"
 }
+
+### Update book info
+PUT http://localhost:8080/read/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Something",
+    "author": "Ivanna Scream",
+    "genre": "didnt pick one",
+    "published": "2026",
+    "series": "yes",
+    "numberInSeries": "Book 1 of 3",
+    "readAgain": "no -- too borring"
+}
+
+### Delete book
+DELETE http://localhost:8080/read/ HTTP/1.1
 
