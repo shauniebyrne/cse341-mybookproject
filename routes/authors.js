@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const authorsController = require('../controllers/authors');
 const validation = require('../validation/validator-authors');
+const { isAuthenticated } = require('../middleware/authenticate');
 
 //Read (GET) records from database
 //Only able to GET whole list so that list can be 
@@ -8,12 +9,12 @@ const validation = require('../validation/validator-authors');
 router.get('/', authorsController.getAuthorsList);
 
 //Create (POST) authors info in database
-router.post('/', validation.checkContent, authorsController.createAuthor);
+router.post('/', isAuthenticated, validation.checkContent, authorsController.createAuthor);
 
 //Update (PUT) authors info in database
-router.put('/:id', validation.checkContent ,authorsController.updateAuthor);
+router.put('/:id', isAuthenticated, validation.checkContent, authorsController.updateAuthor);
 
 //Delete an author from database
-router.delete('/:id', authorsController.deleteAuthor);
+router.delete('/:id', isAuthenticated, authorsController.deleteAuthor);
 
 module.exports = router;

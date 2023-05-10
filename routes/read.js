@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const infoController = require('../controllers/read');
 const validation = require('../validation/validator-read');
+const { isAuthenticated} =  require('../middleware/authenticate');
 
 //Read (GET) all book info from database
 router.get('/', infoController.getAllBooks);
@@ -9,12 +10,12 @@ router.get('/', infoController.getAllBooks);
 router.get('/:id', infoController.getOneBook);
 
 //Create (POST) a new book into database
-router.post('/', validation.checkContent ,infoController.createBook);
+router.post('/', isAuthenticated, validation.checkContent ,infoController.createBook);
 
 //Update (PUT) a books info
-router.put('/:id', validation.checkContent ,infoController.updateBookInfo);
+router.put('/:id', isAuthenticated, validation.checkContent ,infoController.updateBookInfo);
 
 //Delete a book from database
-router.delete('/:id', infoController.deleteBook);
+router.delete('/:id', isAuthenticated, infoController.deleteBook);
 
 module.exports = router;
