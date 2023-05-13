@@ -51,7 +51,8 @@ const createUser = async (req, res) => {
             .collection('user')
             .findOne({ email: email}) 
         if (doesExist) {
-            res.status(409).send('Email already exists')
+            res.status(409).send('Email already exists');
+            res.redirect('/');
         }
 
         //Hash password
@@ -64,7 +65,7 @@ const createUser = async (req, res) => {
                     .collection('user')
                     .insertOne( {email: email, password: hashedPassword});
                 //Error handling (successful post or error)
-                if(dataBack.acknowledged) {
+                if(hashedPassword) {
                     res.status(201).json(dataBack);
                 } else {
                     res.status(500).json(dataBack.error || 'Sorry. User was not created.');
@@ -104,8 +105,8 @@ const updateUserInfo = async (req, res) => {
                         .replaceOne({ _id: userId}, {email: email, password: hashedPassword});
                     console.log(dataBack.modifiedCount + 'document(s) were updated');
                     //Error handling (successful post or error)
-                    if(dataBack.modifiedCount > 0) {
-                        res.status(204).send(dataBack.modifiedCount + "document(s) were updated.");
+                    if(hashedPassword) {
+                        res.status(204).send("Document was updated.");
                     } else {
                         res.status(500).json(dataBack.error || 'Sorry. New information could not be updated.');
                     }
