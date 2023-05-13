@@ -89,23 +89,27 @@ const updateUserInfo = async (req, res) => {
     try {
         if (ObjectId.isValid(req.params.id)) {
             const userId = new ObjectId(req.params.id);
-            const updatedInfo = {
-                email: req.body.email,
-                password: req.body.password
-            };
-            //Connect to books database in mongodb
-            const dataBack = await mongodb
-                .getDb()
-                .db('books')
-                .collection('user')
-                .replaceOne({ _id: userId}, updatedInfo);
-            console.log(dataBack.modifiedCount + 'document(s) were updated');
-            //Error handling (successful post or error)
-            if(dataBack.modifiedCount > 0) {
-                res.status(204).send(dataBack.modifiedCount + "document(s) were updated.");
-            } else {
-                res.status(500).json(dataBack.error || 'Sorry. New information could not be updated.');
-            }
+            const email = req.body.email;
+            const password = req.body.password;
+
+            //Hash password
+            const plainPassword = password;
+            bcrypt.hash(plainPassword, 10)
+                .then(function(hashedPassword) {
+                    //Connect to books database in mongodb
+                    const dataBack = mongodb
+                        .getDb()
+                        .db('books')
+                        .collection('user')
+                        .replaceOne({ _id: userId}, {email: email, password: hashedPassword});
+                    console.log(dataBack.modifiedCount + 'document(s) were updated');
+                    //Error handling (successful post or error)
+                    if(dataBack.modifiedCount > 0) {
+                        res.status(204).send(dataBack.modifiedCount + "document(s) were updated.");
+                    } else {
+                        res.status(500).json(dataBack.error || 'Sorry. New information could not be updated.');
+                    }
+                })
         } else {
             res.status(400).json('Must use a valid id to update information.')
         }
