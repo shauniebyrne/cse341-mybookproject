@@ -1,6 +1,6 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
-//const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 //Read (GET) one user (based off id)
 //Only able to get one user because you don't want
@@ -41,46 +41,41 @@ const createUser = async (req, res) => {
     //#swagger.description=Enter user's email and password
     try{
         //New User Email and Password
-        const newUser = {
-            email: req.body.email,
-            password: req.body.password
-        };
+        const email = req.body.email;
+        const password = req.body.password;
 
         //Check if email already exists
-        // const doesExist = await mongodb
-        //     .getDb()
-        //     .db('books')
-        //     .collection('user')
-        //     .findOne({ email: newUser.email}) 
-        // if (doesExist) {
-        //     res.status(409).send('Email already exists')
-        // }
-
-        //Hash password
-        // const plainPassword = newUser.password;
-        // async function hashPassword(plainPassword) {
-        //     const hash = await bcrypt.hash(plainPassword, 10);
-        //     //store hash in the database
-        // }
-
-        //Compare password
-        // async function comparePassword(plainPassword, hash) {
-        //     const result = await bcrypt.compare(plainPassword, hash)
-        //     return result;
-        // }
-
-        //Connect to database
-        const dataBack = await mongodb
+        const doesExist = await mongodb
             .getDb()
             .db('books')
             .collection('user')
-            .insertOne(newUser);
-        //Error handling (successful post or error)
-        if(dataBack.acknowledged) {
-            res.status(201).json(dataBack);
-        } else {
-            res.status(500).json(dataBack.error || 'Sorry. User was not created.');
+            .findOne({ email: email}) 
+        if (doesExist) {
+            res.status(409).send('Email already exists')
         }
+
+        //Hash password
+        const plainPassword = password;
+        bcrypt.hash(plainPassword, 10)
+            .then(function(hashedPassword) {
+                const dataBack = mongodb
+                    .getDb()
+                    .db('books')
+                    .collection('user')
+                    .insertOne( {email: email, password: hashedPassword});
+                //Error handling (successful post or error)
+                if(dataBack.acknowledged) {
+                    res.status(201).json(dataBack);
+                } else {
+                    res.status(500).json(dataBack.error || 'Sorry. User was not created.');
+                }
+            });
+
+        //Compare password
+        // function comparePassword(plainPassword, hash) {
+        //     const result = bcrypt.compare(plainPassword, hash)
+        //     return result;
+        // }
     } catch (err) {
         res.status(500).json(err);
     }    
