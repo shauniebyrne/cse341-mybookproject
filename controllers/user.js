@@ -66,7 +66,7 @@ const createUser = async (req, res) => {
                     .insertOne( {email: email, password: hashedPassword});
                 //Error handling (successful post or error)
                 if(hashedPassword) {
-                    res.status(201).json(dataBack);
+                    res.status(201).json("User was created.");
                 } else {
                     res.status(500).json(dataBack.error || 'Sorry. User was not created.');
                 }
@@ -103,10 +103,10 @@ const updateUserInfo = async (req, res) => {
                         .db('books')
                         .collection('user')
                         .replaceOne({ _id: userId}, {email: email, password: hashedPassword});
-                    console.log(dataBack.modifiedCount + 'document(s) were updated');
+                    console.log('Document was updated');
                     //Error handling (successful post or error)
                     if(hashedPassword) {
-                        res.status(204).send("Document was updated.");
+                        res.status(204).json("Document was updated.");
                     } else {
                         res.status(500).json(dataBack.error || 'Sorry. New information could not be updated.');
                     }
