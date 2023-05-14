@@ -6,8 +6,6 @@
 }
 
 body {
-    display: flex;
-    justify-content: center;
     background-color:cadetblue;
 }
 
@@ -30,6 +28,11 @@ section#author, section#books {
     background-color: lightgoldenrodyellow;
 }
 
+section#author {
+    margin-left: 400px;
+    margin-right: 400px;
+}
+
 div, div section {
     margin: 5px;
     padding: 5px;
@@ -40,6 +43,11 @@ div section {
     border: 2.5px solid black;
     box-shadow: 2px 2px black;
     background-color: cornflowerblue;
+}
+
+div#bookList {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 
